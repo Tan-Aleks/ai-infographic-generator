@@ -276,7 +276,7 @@ export default function TextAnalyzer() {
       {analysisResult && selectedInfographicType && ( // Показываем, если результат есть и тип выбран
         <div className="mt-6">
           <InfographicDisplay
-            infographicType={selectedInfographicType} // Приведение типа, так как в InfographicDisplay ожидается конкретный тип
+            infographicType={selectedInfographicType as 'statistics' | 'comparison' | 'timeline' | 'list' | 'trends' | 'summary'}
             data={analysisResult}
             styleSettings={styleSettings}
           />
