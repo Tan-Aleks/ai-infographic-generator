@@ -15,9 +15,11 @@ interface InfographicData {
   };
 }
 
+type InfographicType = 'statistics' | 'comparison' | 'timeline' | 'list' | 'trends' | 'summary';
+
 interface InfographicGeneratorProps {
   data: InfographicData;
-  onGenerateInfographic: (type: string) => void;
+  onGenerateInfographic: (type: InfographicType) => void;
 }
 
 const infographicTypes = [
@@ -72,9 +74,9 @@ const infographicTypes = [
 ];
 
 export default function InfographicGenerator({ data, onGenerateInfographic }: InfographicGeneratorProps) {
-  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [selectedType, setSelectedType] = useState<InfographicType | null>(null);
 
-  const handleSelectType = (type: string) => {
+  const handleSelectType = (type: InfographicType) => {
     // Устанавливаем выбранный тип, но не вызываем генерацию
     setSelectedType(type);
   };
@@ -109,7 +111,7 @@ export default function InfographicGenerator({ data, onGenerateInfographic }: In
                   ? 'border-blue-500 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/20'
                   : ''
               }`}
-              onClick={() => isSuitable && handleSelectType(type.id)}
+              onClick={() => isSuitable && handleSelectType(type.id as InfographicType)}
             >
               <div className="p-4">
                 <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${type.color} mb-4`}>
